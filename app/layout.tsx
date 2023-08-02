@@ -46,7 +46,7 @@ export default function RootLayout({ children, }: { children: React.ReactNode })
               <div className="flex flex-col gap-y-4 gap-x-0 mt-5 md:flex-row md:items-center md:justify-end md:gap-y-0 md:gap-x-7 md:mt-0 md:pl-7">
                 {
                   HeaderBar.map((e, index) => {
-                    return <a className="font-medium text-gray-500 hover:text-gray-600 md:py-6 dark:text-gray-100 dark:hover:text-gray-500" href={e.link}>{e.title}</a>
+                    return <a key={index} className="font-medium text-gray-500 hover:text-gray-600 md:py-6 dark:text-gray-100 dark:hover:text-gray-500" href={e.link}>{e.title}</a>
                   })
                 }
                 {/* <a className="font-medium text-blue-600 md:py-6 dark:text-blue-500" href="#" aria-current="page">Landing</a> */}

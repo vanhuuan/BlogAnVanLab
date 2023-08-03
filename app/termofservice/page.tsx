@@ -1,5 +1,5 @@
 export default function TermOfService() {
-    return <div>
+    return <div className="mx-auto max-w-screen-md px-4 sm:px-6 md:max-w-screen-xl sm:py-2  md:py-5  lg:py-10 md:px-8">
         Điều khoản dịch cho blog AnVanLab:
         <br/>
         Chào mừng đến với AnVanLab! Những Điều khoản Dịch vụ này quy định việc sử dụng blog của chúng tôi, vì vậy xin vui lòng dành chút thời gian đọc chúng cẩn thận. Bằng cách truy cập hoặc sử dụng blog của chúng tôi, bạn đồng ý tuân theo những điều khoản và điều kiện này. Nếu bạn không đồng ý với bất kỳ phần nào trong những điều khoản này, xin vui lòng không sử dụng blog của chúng tôi.

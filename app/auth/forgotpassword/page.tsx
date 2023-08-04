@@ -1,12 +1,12 @@
 export default function ForgotPassword() {
     return (
-        <div className="bg-white flex h-full items-center py-16">
+        <div className="dark:bg-slate-900 bg-gray-100 flex h-full items-center lg:py-32 sm:py-12 md:py-24">
             <div className="w-full max-w-md mx-auto p-6">
-                <div className="mt-7 bg-white border border-gray-300 rounded-xl shadow-2xl w-full">
+                <div className="mt-7 bg-white border border-gray-300 rounded-xl shadow-2xl w-full dark:bg-gray-800 dark:border-gray-700">
                     <div className="p-4 sm:p-7">
                         <div className="text-center">
-                            <h1 className="block text-2xl font-bold text-black">Quên mật khẩu</h1>
-                            <p className="mt-2 text-sm text-gray-800 dark:text-gray-600">
+                            <h1 className="block text-2xl font-bold text-gray-800 dark:text-white">Quên mật khẩu</h1>
+                            <p className="mt-2 text-sm ext-gray-600 dark:text-gray-400">
                                 Bạn còn nhớ mật khẩu? <a className="text-blue-600 decoration-2 hover:underline font-medium ml-1" href="/auth/login">Đăng nhập</a>
                             </p>
                         </div>
@@ -15,7 +15,7 @@ export default function ForgotPassword() {
                             <form>
                                 <div className="grid gap-y-4">
                                     <div>
-                                        <label htmlFor="email" className="block text-sm mb-2 dark:text-black">Email</label>
+                                        <label htmlFor="email" className="block text-sm mb-2 dark:text-white">Email</label>
                                         <div className="relative">
                                             <input type="email" id="email" name="email" className="py-3 px-4 block w-full border border-spacing-10 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 text-black" required aria-describedby="email-error" />
                                             <div className="hidden absolute inset-y-0 right-0 items-center pointer-events-none pr-3">

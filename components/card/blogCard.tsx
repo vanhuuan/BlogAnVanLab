@@ -11,6 +11,10 @@ export default function BlogCard({ card }: { card: BlogCardData }) {
         <h3 className="mt-5 text-xl text-gray-800 dark:text-gray-300 dark:group-hover:text-white">
             {card.name} - {card.description}
         </h3>
+        <div>
+            <span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-blue-100 text-blue-800 mr-1">C#</span>
+            <span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-blue-100 text-blue-800 mr-1">Learning</span>
+        </div>
         <p className="mt-3 inline-flex items-center gap-x-2 text-sm font-semibold text-gray-800 dark:text-gray-200">
             Xem thêm
             <svg

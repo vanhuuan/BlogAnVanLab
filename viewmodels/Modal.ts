@@ -1,11 +1,11 @@
-interface NotificationModal{
+export interface NotificationModal{
     message: string;
     title: string;
     success: boolean;
     onClose: () => boolean
 }
 
-interface ChoiceModal{
+export interface ChoiceModal{
     message: string;
     title: string;
     onClose: () => boolean

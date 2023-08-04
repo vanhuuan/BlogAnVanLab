@@ -1,3 +1,5 @@
+import { BlogCardData } from "@/viewmodels/CardData";
+
 export default function BlogCard({ card }: { card: BlogCardData }) {
     return (<a className="group shadow-xl hover:bg-gray-100 rounded-xl p-5 transition-all dark:hover:bg-white/[.05]"
         href="#">
@@ -12,8 +14,8 @@ export default function BlogCard({ card }: { card: BlogCardData }) {
             {card.name} - {card.description}
         </h3>
         <div>
-            <span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-blue-100 text-blue-800 mr-1">C#</span>
-            <span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-blue-100 text-blue-800 mr-1">Learning</span>
+            <span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-blue-50 text-gray-700 m-1 ml-0">C#</span>
+            <span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-blue-50 text-gray-700 m-1 ml-0">Learning</span>
         </div>
         <p className="mt-3 inline-flex items-center gap-x-2 text-sm font-semibold text-gray-800 dark:text-gray-200">
             Xem thêm

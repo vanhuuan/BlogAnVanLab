@@ -7,7 +7,7 @@ export default function Footer() {
 
             <div className="mt-3">
                 <p className="text-gray-500">Đây là trang blog chia sẻ kiến thức học tập cho ngành IT không lợi nhuận, nội dung được chia sẻ có thể được đánh bản quyền hoặc không</p>
-                <p className="text-gray-500">Phát triển bởi Văn Hữu An, người yêu và những người bạn của anh ấy </p>
+                <p className="text-gray-500">Phát triển bởi Văn Hữu An, người yêu, em tòn, zợ tòn của anh ấy </p>
             </div>
 
             <div className="mt-3 space-x-2">

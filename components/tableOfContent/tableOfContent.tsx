@@ -87,7 +87,7 @@ export default function TableOfContent({data}: {data: String}) {
                         <a
                             href={`#${item.id}`}
                             className={`hover:text-blue-600 dark:text-white text-gray-800 mx-1`}
-                            onClick={() => table.onHeaderLinkClick(item.id)}
+                            onClick={() => scrollToHeader(item.id)}
                         >
                             {item.text}
                         </a>
@@ -99,7 +99,7 @@ export default function TableOfContent({data}: {data: String}) {
                         <a
                             href={`#${item.id}`}
                             className={`hover:text-blue-600 dark:text-white text-gray-800 mx-1`}
-                            onClick={() => table.onHeaderLinkClick(item.id)}
+                            onClick={() => scrollToHeader(item.id)}
                         >
                             {item.text}
                         </a>

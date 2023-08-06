@@ -3,10 +3,10 @@
 import HeaderBlogCard from "@/components/card/blogHeaderCard";
 import BottomBlogInfo from "@/components/card/countInfoBlog";
 import TableOfContent from "@/components/tableOfContent/tableOfContent";
-import DiscussionSection from "@/components/comment/Comment";
 import BlogContent from "@/components/blogContent";
 import { TableOfContentItem, TableOfContentsProps } from "@/viewmodels/CardData";
 import { useEffect, useState } from "react";
+import DiscussionSection from "@/components/comment/comment";
 
   const comments = [
     {

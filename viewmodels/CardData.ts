@@ -22,13 +22,13 @@ export interface TableOfContentsProps {
     onHeaderLinkClick: (id: string | null) => void;
 }
 
-interface CommentProps {
+export interface CommentProps {
     name: string;
     profilePicture: string;
     date: string;
     content: string;
   }
   
-interface DiscussionSectionProps {
+export interface DiscussionSectionProps {
     comments: CommentProps[];
 }

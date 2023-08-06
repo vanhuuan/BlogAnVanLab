@@ -1,5 +1,6 @@
 "use client";
 
+import { TableOfContentItem, TableOfContentsProps } from "@/viewmodels/CardData";
 import { useEffect, useState } from "react";
 
 const scrollToHeader = (id: string | null) => {

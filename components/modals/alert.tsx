@@ -1,5 +1,7 @@
 "use client";
 
+import { ChoiceModal } from "@/viewmodels/Modal";
+
 export default function Fail({ model }: { model: ChoiceModal }) {
     return (
         <div id="hs-danger-alert" className="hs-overlay hidden w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto">

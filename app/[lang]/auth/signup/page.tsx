@@ -1,6 +1,7 @@
 "use client";
 
 import Success from "@/components/modals/success";
+import { NotificationModal } from "@/viewmodels/Modal";
 import { useState } from "react";
 
 export default function SignUp() {

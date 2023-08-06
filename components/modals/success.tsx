@@ -1,10 +1,12 @@
 "use client";
 
+import { NotificationModal } from "@/viewmodels/Modal";
+
 export default function Success({ model }: { model: NotificationModal }) {
 
     return (
-    <div id="hs-task-created-alert" className="hs-overlay w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto bg-transparent">
-        <div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
+    <div id="hs-task-created-alert" className="hs-overlay w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto bg-transparent backdrop-blur">
+        <div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
             <div className="relative flex flex-col bg-white shadow-lg rounded-xl dark:bg-gray-800">
                 <div className="absolute top-2 right-2">
                     <button type="button" onClick={model.onClose}

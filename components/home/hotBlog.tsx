@@ -1,3 +1,4 @@
+import { BlogCardData } from "@/viewmodels/CardData";
 import BlogCard from "../card/blogCard";
 
 export default function HotBlog() {
@@ -26,9 +27,24 @@ export default function HotBlog() {
           description: "Giới thiệu về C# và viết chương trình đầu tiên với C#"
         }
         return (
-          <BlogCard key={index} card={card}/>
+          <BlogCard key={index} card={card} />
         );
       })}
+    </div>
+    <div className="text-center mt-5 shadow-xl">
+      <div className="inline-block bg-white border shadow-sm rounded-full dark:bg-slate-900 dark:border-gray-800">
+        <div className="py-3 px-4 flex items-center gap-x-2">
+          <p className="text-gray-600 dark:text-gray-400">
+            Xem thêm nhiều bài viết hơn.
+          </p>
+          <a className="inline-flex items-center gap-x-1.5 text-blue-600 decoration-2 hover:underline font-medium" href="/topics/blogs">
+            Xem ngay
+            <svg className="w-2.5 h-2.5" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M5.27921 2L10.9257 7.64645C11.1209 7.84171 11.1209 8.15829 10.9257 8.35355L5.27921 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 }

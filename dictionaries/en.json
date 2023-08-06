@@ -1,0 +1,7 @@
+{
+  "header": {
+    "menu": ["About", "Topics", "Search"],
+    "login": "Login",
+    "search": "Search"
+  }
+}

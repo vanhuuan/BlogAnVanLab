@@ -1,5 +1,5 @@
 import TopicCard from "../card/topicCard"
-
+import { TopicCardData } from "@/viewmodels/CardData"
 export default function Topics() {
     const languages = [
         "https://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29#/media/File:C_Sharp_wordmark.svg",
@@ -24,6 +24,22 @@ export default function Topics() {
                     return <TopicCard {...card} key={index} />
                 })}
 
+            </div>
+
+            <div className="text-center mt-5">
+                <div className="inline-block bg-white border shadow-sm rounded-full dark:bg-slate-900 dark:border-gray-800">
+                    <div className="py-3 px-4 flex items-center gap-x-2">
+                        <p className="text-gray-600 dark:text-gray-400">
+                            Xem thêm nhiều chủ đề hơn.
+                        </p>
+                        <a className="inline-flex items-center gap-x-1.5 text-blue-600 decoration-2 hover:underline font-medium" href="/topics">
+                            Đến xem
+                            <svg className="w-2.5 h-2.5" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M5.27921 2L10.9257 7.64645C11.1209 7.84171 11.1209 8.15829 10.9257 8.35355L5.27921 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>)
 }

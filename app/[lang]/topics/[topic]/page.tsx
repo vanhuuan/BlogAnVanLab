@@ -1,4 +1,5 @@
 import BlogCard from "@/components/card/blogCard";
+import { Locale } from "@/i18next.config";
 import { BlogCardData } from "@/viewmodels/CardData";
 
 const imgExample = [
@@ -8,12 +9,8 @@ const imgExample = [
 ];
 
 
-export default function BlogTopic({ params }: { params: { id: string } }) {
+export default function BlogTopic({ params }: { params: { id: string, lang: Locale } }) {
     console.log(params)
-    // return <>
-    //     Blog &apos; s Topics <br />
-    //     <a href="/topics/blogs/123">Xem 1 topic</a>
-    // </>
 
     return (
         <div className="relative overflow-hidden">
@@ -68,12 +65,13 @@ export default function BlogTopic({ params }: { params: { id: string } }) {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {imgExample.map((e, index) => {
                         const card: BlogCardData = {
+                            id: "123",
                             slug: e,
                             name: "Tập 1, C# là gì",
                             description: "Giới thiệu về C# và viết chương trình đầu tiên với C#"
                         }
                         return (
-                            <BlogCard key={index} card={card} />
+                            <BlogCard key={index} card={card}/>
                         );
                     })}
                 </div>

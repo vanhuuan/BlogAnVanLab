@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-white dark:bg-gray-800`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header lang={locale} />
-          {children}
+          {children }
           <Footer/>
         </ThemeProvider>
       </body>

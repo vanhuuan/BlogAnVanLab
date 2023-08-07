@@ -1,5 +1,6 @@
 import { BlogCardData } from "@/viewmodels/CardData";
 import BlogCard from "../card/blogCard";
+import { Locale } from "@/i18next.config";
 
 export default function HotBlog() {
 
@@ -22,6 +23,7 @@ export default function HotBlog() {
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {imgExample.map((e, index) => {
         const card: BlogCardData = {
+          id: "123",
           slug: e,
           name: "Tập 1, C# là gì",
           description: "Giới thiệu về C# và viết chương trình đầu tiên với C#"

@@ -1,12 +1,12 @@
 import { ThemeSwitcher } from "../theme/themeSwitcher";
 import { Locale } from "@/i18next.config";
 import { getDictionary } from "@/get-dictionary";
-import getLink from "@/hooks/getLink";
 import LocateSwitcher from "../theme/locateSwitcher";
+import { getDynamicLink } from "@/hooks/getLink";
 
 export default async function Header({ lang }: { lang: Locale }) {
   const language = await getDictionary(lang);
-  const genLink = await getLink(lang);
+  const genLink = getDynamicLink({lang: lang});
 
   const HeaderBar = [
     {

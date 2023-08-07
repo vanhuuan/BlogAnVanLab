@@ -40,13 +40,14 @@ export function middleware(request: NextRequest) {
     if (defaultLang != undefined) {
       return NextResponse.redirect(
         new URL(
-          `/${defaultLang}${
-            nextPathname.startsWith("/") ? "" : "/"
+          `/${defaultLang}${nextPathname.startsWith("/") ? "" : "/"
           }${nextPathname}`,
           request.url
         )
       );
     }
+
+    request.cookies.set({ name: "lang", value: locale! })
     return NextResponse.redirect(
       new URL(
         `/${locale}${nextPathname.startsWith("/") ? "" : "/"}${nextPathname}`,

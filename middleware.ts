@@ -32,11 +32,10 @@ export function middleware(request: NextRequest) {
       !nextPathname.startsWith(`/${locale}/`) && nextPathname !== `/${locale}`
   );
 
+  const defaultLang = request.cookies.get("lang")?.value;
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
-    const defaultLang = request.cookies.get("lang")?.value;
-
     if (defaultLang != undefined) {
       return NextResponse.redirect(
         new URL(
@@ -55,6 +54,14 @@ export function middleware(request: NextRequest) {
       )
     );
   }
+
+  const response = NextResponse.next()
+  const urlLang = nextPathname.split("/")[1]
+  if(urlLang != defaultLang){
+    response.cookies.set('lang', nextPathname.split("/")[1])
+  }
+
+  return response
 }
 
 export const config = {

@@ -1,8 +1,15 @@
+"use client";
+
+import { getStaicLink } from "@/hooks/getLink";
+import { Locale } from "@/i18next.config";
 import { BlogCardData } from "@/viewmodels/CardData";
 
 export default function BlogCard({ card }: { card: BlogCardData }) {
+
+    const genLink = getStaicLink();
+
     return (<a className="group shadow-xl hover:bg-gray-100 rounded-xl p-5 transition-all dark:hover:bg-white/[.05]"
-        href="#">
+        href={genLink(`/topics/blogs/${card.id}`)}>
         <div className="aspect-w-16 aspect-h-10 p-3">
             <img
                 className="w-full object-cover rounded-xl"

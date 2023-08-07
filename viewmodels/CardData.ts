@@ -5,6 +5,7 @@ export interface TopicCardData {
 }
 
 export interface BlogCardData {
+    id: string;
     name: string;
     description: string;
     slug: string;

@@ -3,10 +3,11 @@ import { Locale } from "@/i18next.config";
 import { getDictionary } from "@/get-dictionary";
 import LocateSwitcher from "../theme/locateSwitcher";
 import { getDynamicLink } from "@/hooks/getLink";
+import Script from "next/script";
 
 export default async function Header({ lang }: { lang: Locale }) {
   const language = await getDictionary(lang);
-  const genLink = getDynamicLink({lang: lang});
+  const genLink = getDynamicLink({ lang: lang });
 
   const HeaderBar = [
     {
@@ -36,6 +37,7 @@ export default async function Header({ lang }: { lang: Locale }) {
         className="mt-6 relative max-w-7xl w-full bg-white border border-gray-200 rounded-[36px] mx-2 py-3 px-4 md:flex md:items-center md:justify-between md:py-0 md:px-6 lg:px-8 xl:mx-auto dark:bg-gray-800 dark:border-gray-700"
         aria-label="Global"
       >
+        <Script src="../../node_modules/preline/dist/preline.js" />
         <div className="flex items-center justify-between">
           <a
             className="flex-none text-xl font-semibold dark:text-white"
@@ -46,7 +48,7 @@ export default async function Header({ lang }: { lang: Locale }) {
           </a>
           <div className="hidden mx-auto sm:block border rounded-md border-gray-400 dark:border-gray-100 ml-10">
             <label htmlFor="icon" className="sr-only">
-              Tìm kiếm
+              {language.header.search}
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none z-20 pl-4">

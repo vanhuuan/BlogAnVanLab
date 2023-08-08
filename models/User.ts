@@ -1,10 +1,10 @@
-import { prop } from "@typegoose/typegoose";
-import { nanoid } from "nanoid";
+import { getModelForClass, prop } from "@typegoose/typegoose";
+import BaseModel from "./BaseModel";
 
-export class User {
+export class User extends BaseModel {
     @prop({ required: true })
-    name: string;
+    public name: string;
 
-    @prop({ required: true })
-    roles: string[]
+    // @prop({ required: true })
+    // public roles: string[]
 }

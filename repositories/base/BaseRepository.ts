@@ -1,49 +1,47 @@
-// import all interfaces
-import { IWrite } from '../interfaces/IWrite';
-import { IRead } from '../interfaces/IRead';
-
 // we imported all types from mongodb driver, to use in code
-import {
-    Db,
-    Collection,
-    InsertOneResult,
-    Document,
-} from 'mongodb';
+import { inject, injectable, unmanaged } from "inversify";
+import { IRepository } from '../interfaces/IRepository';
+import { DocumentType, ReturnModelType, getModelForClass } from '@typegoose/typegoose';
 import BaseModel from '@/models/BaseModel';
-import { ObjectId } from 'mongoose';
+import mongoose, { FilterQuery } from 'mongoose';
+import dbConnect from "../../lib/dbConnect"
+import { TYPES } from "@/types";
+import { AnyParamConstructor } from "@typegoose/typegoose/lib/types";
 
-// that class only can be extended
-export abstract class BaseRepository<T extends BaseModel> implements IWrite<T>, IRead<T> {
-    //creating a property to use your code in all instances 
-    // that extends your base repository and reuse on methods of class
-    public readonly _collection: Collection<T>;
+@injectable()
+export abstract class BaseRepository<T extends BaseModel> implements IRepository<T> {
 
-    //we created constructor with arguments to manipulate mongodb operations
-    constructor(db: Db, collectionName: string) {
-        this._collection = db.collection(collectionName);
+    private readonly model: ReturnModelType<AnyParamConstructor<T>>;
+
+    constructor(@unmanaged() modelConstructor: any) {
+        this.model = modelConstructor
     }
 
-    // we add to method, the async keyword to manipulate the insertOne result
-    // of method.
-    async create(item: T): Promise<boolean> {
-        const result: InsertOneResult<Document> = await this._collection.insertOne(item);
-        // after the insert operations, we returns only acknowledged property (that haves a 1 or 0 results)
-        // and we convert to boolean result (0 false, 1 true)
-        return !!result.acknowledged;
+    async create(item: T): Promise<T> {
+        await dbConnect();
+        console.log("alo")
+        const createdItem = new this.model(item);
+        await createdItem.save();
+        return createdItem.toObject()
     }
 
+    async update(id: string, item: T): Promise<T | null> {
+        const updatedItem = await this.model.findByIdAndUpdate(id, item, { new: true });
+        return updatedItem ? updatedItem.toObject() : null;
+    }
+    
+    async delete(id: string): Promise<boolean> {
+        const result = await this.model.findByIdAndDelete(id);
+        return result !== null;
+    }
 
-    update(id: string, item: T): Promise<boolean> {
-        throw new Error('Method not implemented.');
+    async find(query: FilterQuery<DocumentType<T>>): Promise<T[]> {
+        const items = await this.model.find(query);
+        return items.map(item => new this.model(item.toObject())) as T[];
     }
-    delete(id: string): Promise<boolean> {
-        throw new Error('Method not implemented.');
-    }
-    async find(item: T): Promise<T[]> {
-        throw new Error('Method not implemented.');
-    }
-    async findOne(id: ObjectId): Promise<T> {
-        const result: WithId<T> = await this._collection.findOne({ _id: id})
-        return result;
+
+    async findOne(id: string): Promise<T | null> {
+        const item = await this.model.findById(id);
+        return item ? item.toObject() : null;
     }
 }

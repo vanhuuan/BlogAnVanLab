@@ -3,10 +3,14 @@ import { nanoid } from "nanoid";
 import BaseModel from "./BaseModel";
 
 export class Account extends BaseModel {
-    @prop({ required: true })
+    @prop({ required: true, unique: true })
     uid: string;
 
-    @prop({ required: true })
+    @prop({
+        required: true,
+        unique: true,
+        match: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+    })
     email: string;
 
     @prop({ required: true })

@@ -1,8 +1,16 @@
 import { prop } from "@typegoose/typegoose";
-import type { ObjectId } from "mongoose";
 import { nanoid } from "nanoid";
 
-export default class BaseModel extends Document {
+export interface IBaseModel {
+    _id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    isDeleted: boolean;
+}
+
+export default class BaseModel implements IBaseModel {
+    @prop({ default: () => nanoid(24) })
+    _id: string;
 
     @prop({ default: () => new Date() })
     createdAt: Date;
@@ -12,4 +20,10 @@ export default class BaseModel extends Document {
 
     @prop({ default: false })
     isDeleted: boolean;
+
+    constructor(params?: Partial<BaseModel>) {
+        if (params) {
+            Object.assign(this, params);
+        }
+    }
 }

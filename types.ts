@@ -1,5 +1,7 @@
-const TYPES = {
-    UserRepository: Symbol.for("UserRepository")
+const REPOSITORIES_TYPES = {
+    UserRepository: Symbol.for("UserRepository"),
+    AccountRepository: Symbol.for("AccountRepository"),
+    RoleRepository: Symbol.for("RoleRepository")
 };
 
-export { TYPES };
+export { REPOSITORIES_TYPES };

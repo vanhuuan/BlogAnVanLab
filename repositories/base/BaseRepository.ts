@@ -5,7 +5,6 @@ import { DocumentType, ReturnModelType, getModelForClass } from '@typegoose/type
 import BaseModel from '@/models/BaseModel';
 import mongoose, { FilterQuery } from 'mongoose';
 import dbConnect from "../../lib/dbConnect"
-import { TYPES } from "@/types";
 import { AnyParamConstructor } from "@typegoose/typegoose/lib/types";
 
 @injectable()

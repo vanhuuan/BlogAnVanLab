@@ -1,13 +1,11 @@
 import HotBlog from "@/components/home/hotBlog";
-import Topics from "@/components/home/topic";
-import { Locale } from "@/i18next.config";
+import HotTopics from "@/components/home/HotTopics";
 
 export default function Home() {
-  
   return (
     <div>
-      <Topics/>
-      <HotBlog/>
+      <HotTopics />
+      <HotBlog />
     </div>
   );
 }

@@ -67,7 +67,7 @@ export default async function Header({ lang }: { lang: Locale }) {
                 type="text"
                 id="icon"
                 name="icon"
-                className="py-2 px-4 pl-11 pr-20 block w-92 md:w-96 bg-transparent border-gray-700 shadow-sm rounded-md text-sm text-gray-300 focus:z-10 focus:border-gray-900 focus:ring-gray-600 placeholder:text-gray-500"
+                className="py-2 px-4 pl-11 pr-20 block w-92 md:w-96 bg-transparent border-gray-700 shadow-sm rounded-md text-sm text-black-300 focus:z-10 focus:border-gray-900 focus:ring-gray-600 placeholder:text-gray-500"
                 placeholder={language.header.search}
               />
             </div>

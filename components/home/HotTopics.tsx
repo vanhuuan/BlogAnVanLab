@@ -1,6 +1,6 @@
 import TopicCard from "../card/topicCard";
 import { TopicCardData } from "@/viewmodels/CardData";
-export default function Topics() {
+export default function HotTopics() {
   const languages = [
     "https://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29#/media/File:C_Sharp_wordmark.svg",
     "https://pbs.twimg.com/profile_images/1390448160934305793/ohii8Hxq_400x400.png",

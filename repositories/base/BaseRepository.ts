@@ -11,10 +11,9 @@ import { AnyParamConstructor } from "@typegoose/typegoose/lib/types";
 @injectable()
 export abstract class BaseRepository<T extends BaseModel> implements IRepository<T> {
 
-    private readonly model: ReturnModelType<AnyParamConstructor<T>>;
+    public model: ReturnModelType<AnyParamConstructor<T>>;
 
-    constructor(@unmanaged() modelConstructor: any) {
-        this.model = modelConstructor
+    constructor() {
     }
 
     async create(item: T): Promise<T> {

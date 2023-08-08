@@ -6,7 +6,8 @@ import { getModelForClass } from "@typegoose/typegoose";
 @injectable()
 export class UserRepository extends BaseRepository<User> {
     constructor() {
+        super()
         const UserModel = getModelForClass(User)
-        super(UserModel);
+        this.model = UserModel
     }
 }

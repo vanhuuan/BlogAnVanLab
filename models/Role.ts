@@ -1,9 +1,12 @@
-import { prop } from "@typegoose/typegoose"
-import { nanoid } from "nanoid"
+import * as typegoose from "@typegoose/typegoose"
 import BaseModel from "./BaseModel"
+import { User } from "./User";
 
 export class Role extends BaseModel{
 
-    @prop({ required: true })
+    @typegoose.prop({ ref: () => User, required: true})
+    user: typegoose.Ref<User>[];
+
+    @typegoose.prop({ required: true })
     name: string
 }

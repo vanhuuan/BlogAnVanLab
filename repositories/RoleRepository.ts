@@ -3,7 +3,7 @@ import { BaseRepository } from "./base/BaseRepository";
 import { IRepository } from "./interfaces/IRepository";
 import { getModelForClass } from "@typegoose/typegoose";
 
-export class RoleRepository extends BaseRepository<Role> implements IRepository<Role> {
+export class RoleRepository extends BaseRepository<Role> {
 
     constructor() {
         super();

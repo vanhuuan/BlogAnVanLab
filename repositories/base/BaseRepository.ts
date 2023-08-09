@@ -33,13 +33,24 @@ export abstract class BaseRepository<T extends BaseModel> implements IRepository
         return result !== null;
     }
 
-    async find(query: FilterQuery<DocumentType<T>>): Promise<T[]> {
+    async find(query: FilterQuery<DocumentType<T>>, includeDelete: boolean = false): Promise<T[]> {
+        if(includeDelete == false) query.isDeleted = false
         const items = await this.model.find(query);
         return items.map(item => new this.model(item.toObject())) as T[];
     }
 
-    async findOne(id: string): Promise<T | null> {
-        const item = await this.model.findById(id);
+    async findOne(query: FilterQuery<DocumentType<T>>, includeDelete: boolean = false): Promise<T | null> {
+        if(includeDelete == false) query.isDeleted = false
+        const items = await this.model.find(query);
+        return items.map(item => new this.model(item.toObject()))[0];
+    }
+    
+    async findById(id: string, includeDelete: boolean = false): Promise<T | null> {
+        const query: FilterQuery<DocumentType<T>> = {
+            _id: id
+        }
+        if(includeDelete == false) query.isDeleted = false
+        const item = await this.model.findOne(query);
         return item ? item.toObject() : null;
     }
 }

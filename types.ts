@@ -4,4 +4,8 @@ const REPOSITORIES_TYPES = {
     RoleRepository: Symbol.for("RoleRepository")
 };
 
-export { REPOSITORIES_TYPES };
+const SERVICES_TYPES = {
+    UserService: Symbol.for("UserService")
+};
+
+export { REPOSITORIES_TYPES, SERVICES_TYPES };

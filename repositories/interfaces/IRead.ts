@@ -1,6 +1,9 @@
 import BaseModel from "@/models/BaseModel";
+import { DocumentType } from "@typegoose/typegoose";
+import { FilterQuery } from "mongoose";
 
 export interface IRead<T> {
-    find(item: T): Promise<T[]>;
-    findOne(id: string): Promise<T | null>;
+    find(query: FilterQuery<DocumentType<T>>, includeDelete?: boolean): Promise<T[]>;
+    findOne(query: FilterQuery<DocumentType<T>>, includeDelete?: boolean): Promise<T | null>;
+    findById(id: string, includeDelete?: boolean): Promise<T | null>;
 }

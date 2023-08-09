@@ -1,21 +1,21 @@
-import { prop } from "@typegoose/typegoose";
-import { nanoid } from "nanoid";
+import * as typegoose from "@typegoose/typegoose";
 import BaseModel from "./BaseModel";
+import { User } from "./User";
 
 export class Account extends BaseModel {
-    @prop({ required: true, unique: true })
-    uid: string;
+    @typegoose.prop({ required: true, unique: true, ref: () => User })
+    user: typegoose.Ref<User>;
 
-    @prop({
+    @typegoose.prop({
         required: true,
         unique: true,
         match: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
     })
     email: string;
 
-    @prop({ required: true })
+    @typegoose.prop({ required: true })
     password: string;
 
-    @prop({ required: true })
+    @typegoose.prop({ required: true })
     salt: string;
 }

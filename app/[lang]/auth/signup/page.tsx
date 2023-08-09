@@ -15,7 +15,7 @@ export default function SignUp() {
         })
     return (
         <div className="w-full max-w-lg mx-auto p-6 flex h-full items-center py-16">
-            {open === true ? <Success model={notiModal} /> : <></> }
+            {open === true ? <Success model={notiModal} /> : <></>}
             <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
                 <div className="p-4 sm:p-7">
                     <div className="text-center">
@@ -134,7 +134,8 @@ export default function SignUp() {
 
                                 <button
                                     type="submit" onClick={(e) => {
-                                        e.preventDefault(); 
+                                        e.preventDefault();
+                                        
                                         setNotiModal({
                                             title: "Đăng ký thành công",
                                             message: "Đăng ký thành công, hãy quay lại trang đăng nhập",

@@ -9,7 +9,6 @@ export interface IBaseModel {
 }
 
 export default class BaseModel implements IBaseModel {
-    @prop({ default: () => nanoid(24) })
     _id: string;
 
     @prop({ default: () => new Date() })

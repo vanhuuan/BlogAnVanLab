@@ -1,7 +1,27 @@
 {
   "header": {
-    "menu": ["About", "Topics", "Search"],
+    "menu": [
+      "About",
+      "Topics",
+      "Search"
+    ],
     "login": "Login",
     "search": "Search"
+  },
+  "bottom": {
+    "desc": "This is a blog page that shares educational knowledge for the IT industry without profit. The content shared may be copyrighted or not.",
+    "dev": "Developed by Van Huu An, the beloved, cute, and lovely partner of him."
+  },
+  "signUp": {
+    "title": "Sign Up",
+    "caption": "You have an account?",
+    "login": "Login",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "accecpt": "I accecpt",
+    "term": "term of service",
+    "or": "Or",
+    "signUpWithGoogle": "Sign Up with Google",
+    "signUpWithGithub": "Sign Up with Github"
   }
 }

@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     user.name = "User"
 
     const admin = new Role()
-    admin.name = "admin"
+    admin.name = "Admin"
 
     await releRepository.create(user)
     await releRepository.create(admin)

@@ -1,10 +1,29 @@
 "use client";
 
 import Success from "@/components/modals/success";
+import { getDictionary } from "@/get-dictionary";
+import { getStaicLanguage } from "@/hooks/getLanguage";
+import { getStaicLink } from "@/hooks/getLink";
 import { NotificationModal } from "@/viewmodels/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function SignUp() {
+export async function getStaticProps({ locale: Local }) {
+    const dictionary = await getDictionary(getStaicLink());
+
+    return {
+        props: {
+            dictionary,
+        },
+    };
+}
+
+export default async function SignUp({ dictionary }) {
+
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [agree, setAgree] = useState(false)
+    const lang = getStaicLanguage();
+
     const [open, setOpen] = useState(false)
     const [notiModal, setNotiModal] = useState<NotificationModal>(
         {
@@ -13,6 +32,7 @@ export default function SignUp() {
             success: false,
             onClose: () => { setOpen(false); return true }
         })
+
     return (
         <div className="w-full max-w-lg mx-auto p-6 flex h-full items-center py-16">
             {open === true ? <Success model={notiModal} /> : <></>}
@@ -56,7 +76,7 @@ export default function SignUp() {
                         </button>
 
                         <div className="py-3 flex items-center text-xs text-dark uppercase before:flex-[1_1_0%] before:border-t before:border-gray-200 before:mr-6 after:flex-[1_1_0%] after:border-t after:border-gray-200 after:ml-6 dark:text-dark dark:before:border-gray-600 dark:after:border-gray-600">Hoặc</div>
-                        <form>
+                        <form method="POST">
                             <div className="grid gap-y-4">
                                 <div>
                                     <label htmlFor="email" className="block text-sm mb-2 dark:text-white">Email</label>
@@ -66,6 +86,8 @@ export default function SignUp() {
                                             id="email"
                                             name="email"
                                             required
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
                                             aria-describedby="email-error"
                                             className="py-3 px-4 block w-full border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                                         />
@@ -85,6 +107,8 @@ export default function SignUp() {
                                             id="password"
                                             name="password"
                                             required
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
                                             aria-describedby="password-error"
                                             className="py-3 px-4 block w-full border border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                                         />
@@ -115,12 +139,14 @@ export default function SignUp() {
                                     </div>
                                     <p className="hidden text-xs text-red-600 mt-2" id="confirm-password-error">Mật khẩu không khớp</p>
                                 </div>
-                                <div className="flex items-center">
+                                <div className="flex items-center" onClick={() => setAgree(!agree)}>
                                     <div className="flex">
                                         <input
                                             id="remember-me"
                                             name="remember-me"
                                             type="checkbox"
+                                            checked={agree}
+                                            onChange={() => setAgree(!agree)}
                                             className="shrink-0 mt-0.5 border-gray-200 rounded border border-spacing-10 text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                                         />
                                     </div>
@@ -135,7 +161,7 @@ export default function SignUp() {
                                 <button
                                     type="submit" onClick={(e) => {
                                         e.preventDefault();
-                                        
+
                                         setNotiModal({
                                             title: "Đăng ký thành công",
                                             message: "Đăng ký thành công, hãy quay lại trang đăng nhập",

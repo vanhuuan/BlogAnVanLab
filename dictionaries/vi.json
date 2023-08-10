@@ -1,7 +1,27 @@
 {
   "header": {
-    "menu": ["Giới thiệu", "Chủ đề", "Tìm kiếm"],
+    "menu": [
+      "Giới thiệu",
+      "Chủ đề",
+      "Tìm kiếm"
+    ],
     "login": "Đăng nhập",
-    "search": "Tìm kiếm"
+    "search": "Phát triển bởi Văn Hữu An, người yêu, em tòn, zợ tòn của anh ấy"
+  },
+  "bottom": {
+    "desc": "Đây là trang blog chia sẻ kiến thức học tập cho ngành IT không lợi nhuận, nội dung được chia sẻ có thể được đánh bản quyền hoặc không",
+    "dev": "Developed by Van Huu An, the beloved, cute, and lovely partner of him."
+  },
+  "signUp": {
+    "title": "Đăng ký",
+    "caption": "Bạn đã có tài khoản?",
+    "login": "Đăng nhập",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "accecpt": "Tôi chấp nhận",
+    "term": "điều khoản sử dụng",
+    "or": "Hoặc",
+    "signUpWithGoogle": "Bắt đầu với Google",
+    "signUpWithGithub": "Bắt đầu với Github"
   }
 }

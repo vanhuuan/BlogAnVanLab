@@ -1,4 +1,9 @@
-export default function Footer() {
+import { getDictionary } from "@/get-dictionary";
+import { Locale } from "@/i18next.config";
+
+export default async function Footer({ lang }: { lang: Locale }) {
+    const language = await getDictionary(lang);
+    
     return <footer className="mt-auto w-full py-10 px-4 sm:px-6 lg:px-8 shadow-inner dark:bg-gray-800">
         <div className="text-center">
             <div>
@@ -6,8 +11,8 @@ export default function Footer() {
             </div>
 
             <div className="mt-3">
-                <p className="text-gray-500">Đây là trang blog chia sẻ kiến thức học tập cho ngành IT không lợi nhuận, nội dung được chia sẻ có thể được đánh bản quyền hoặc không</p>
-                <p className="text-gray-500">Phát triển bởi Văn Hữu An, người yêu, em tòn, zợ tòn của anh ấy </p>
+                <p className="text-gray-500">{language.bottom.desc}</p>
+                <p className="text-gray-500">{language.bottom.dev}</p>
             </div>
 
             <div className="mt-3 space-x-2">

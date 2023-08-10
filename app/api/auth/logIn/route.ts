@@ -16,13 +16,15 @@ export async function POST(request: NextRequest) {
         const UserService = container.get<IUserService>(SERVICES_TYPES.UserService);
 
         const user = await UserService.Login(await request.json());
-        if (user != null) return NextResponse.json(JSON.stringify(user), {
+        if (user != null) return NextResponse.json(user, {
             status: 200
         })
+
         return NextResponse.json({ message: "Wrong Username or Password" }, {
             status: 400
         });
     } catch (e) {
+        console.error(e)
         return NextResponse.json({ message: "Wrong Username or Password" }, {
             status: 400
         });

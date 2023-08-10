@@ -31,40 +31,53 @@ export class UserService implements IUserService {
 
     async Login(dto: LoginDto): Promise<UserViewDto | null> {
         console.log(dto)
-        const acc = await this.accountRepository.findOne({ email: dto.userName })
-        if (acc == null) return null;
+        try {
+            const acc = await this.accountRepository.findOne({ email: dto.userName })
+            if (!acc) return null;
 
-        const hashedPassword = await bcrypt.hash(dto.passWord, acc.salt)
-        if (hashedPassword !== acc.password) return null
+            const hashedPassword = await bcrypt.hash(dto.passWord, acc.salt)
+            if (hashedPassword !== acc.password) return null
+            
+            const user = await this.userRepository.findById(acc.user.toString())
+            if (user == null) return null
 
-        console.log("uid", acc.user.toString())
-        const user = await this.userRepository.findById(acc.user.toString())
+            var roles: string[] = []
+            for(const item of user.roles){
+                const id = item.toString();
+                const role = await this.roleRepository.findById(id)
+                if (role != null) {
+                    roles.push(role.name);
+                }
+            }
 
-        if (user == null) return null
-        var userView: UserViewDto = {
-            name: user!.name,
-            email: acc.email,
-            createdDate: user.createdAt,
-            roles: []
+            var userView: UserViewDto = {
+                name: user!.name,
+                email: acc.email,
+                createdDate: user.createdAt,
+                roles: roles
+            }
+            return userView
+        } catch (e) {
+            console.error(e)
+            return null
         }
-        return userView
     }
 
     async SignUp(dto: SignUpDto): Promise<boolean> {
         try {
-            const account = this.accountRepository.findOne({ email: dto.email }, false)
-            if (account != null) return false
+            const account = await this.accountRepository.findOne({ email: dto.email }, false)
+            if (account) return false
 
-            const newUser = new User();
+            var newUser = new User();
             newUser.name = dto.name != null ? dto.name : "";
-            const userRole = await this.roleRepository.findById("1")
+            const userRole = await this.roleRepository.findById("64d44cfddac752e9901bbe52")
+            console.log(userRole)
             if (userRole) newUser.roles = [userRole?._id]
-            await this.userRepository.create(newUser);
+            newUser = await this.userRepository.create(newUser);
 
             const salt = await bcrypt.genSalt()
             const hashedPassword = await bcrypt.hash(dto.password, salt)
             const newAccount = new Account()
-
             newAccount.user = newUser._id
             newAccount.password = hashedPassword
             newAccount.salt = salt
@@ -74,6 +87,7 @@ export class UserService implements IUserService {
 
             return true;
         } catch (e) {
+            console.error(e)
             return false;
         }
     }

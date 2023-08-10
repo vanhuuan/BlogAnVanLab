@@ -17,35 +17,39 @@ export abstract class BaseRepository<T extends BaseModel> implements IRepository
 
     async create(item: T): Promise<T> {
         await dbConnect();
-        console.log("alo")
         const createdItem = new this.model(item);
         await createdItem.save();
         return createdItem.toObject()
     }
 
     async update(id: string, item: T): Promise<T | null> {
+        await dbConnect();
         const updatedItem = await this.model.findByIdAndUpdate(id, item, { new: true });
         return updatedItem ? updatedItem.toObject() : null;
     }
     
     async delete(id: string): Promise<boolean> {
+        await dbConnect();
         const result = await this.model.findByIdAndDelete(id);
         return result !== null;
     }
 
     async find(query: FilterQuery<DocumentType<T>>, includeDelete: boolean = false): Promise<T[]> {
+        await dbConnect();
         if(includeDelete == false) query.isDeleted = false
         const items = await this.model.find(query);
         return items.map(item => new this.model(item.toObject())) as T[];
     }
 
     async findOne(query: FilterQuery<DocumentType<T>>, includeDelete: boolean = false): Promise<T | null> {
+        await dbConnect();
         if(includeDelete == false) query.isDeleted = false
         const items = await this.model.find(query);
         return items.map(item => new this.model(item.toObject()))[0];
     }
     
     async findById(id: string, includeDelete: boolean = false): Promise<T | null> {
+        await dbConnect();
         const query: FilterQuery<DocumentType<T>> = {
             _id: id
         }

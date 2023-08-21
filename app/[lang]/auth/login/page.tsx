@@ -1,5 +1,12 @@
+import { FormEvent } from "react"
 
 export default function Login() {
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    // Goi api
+  }
+
   return (
     <div className="w-full max-w-lg mx-auto p-6 flex h-full items-center py-16 bg">
       <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-2xl w-full dark:bg-gray-800 dark:border-gray-700">
@@ -38,7 +45,7 @@ export default function Login() {
               Đăng nhập với Github
             </button>
             <div className="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-[1_1_0%] before:border-t before:border-gray-200 before:mr-6 after:flex-[1_1_0%] after:border-t after:border-gray-200 after:ml-6 dark:text-gray-500 dark:before:border-gray-600 dark:after:border-gray-600">Hoặc</div>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="grid gap-y-4">
                 <div>
                   <label htmlFor="email" className="block text-sm mb-2 dark:text-white">Email</label>

@@ -1,30 +1,23 @@
 "use client";
 
 import Success from "@/components/modals/success";
-import { getDictionary } from "@/get-dictionary";
-import { getStaicLanguage } from "@/hooks/getLanguage";
-import { getStaicLink } from "@/hooks/getLink";
-import { Locale } from "@/i18next.config";
 import { NotificationModal } from "@/viewmodels/Modal";
 import { useEffect, useState } from "react";
-import { GetStaticProps } from "next";
 
-export const getStaticProps: GetStaticProps = async (context) => {
-    console.log(context);
-    const dictionary = await getDictionary("vi");
-    return {
-        props: {
-            dictionary,
-        },
-    };
-};
+// export const getStaticProps: GetStaticProps = async (context) => {
+//     console.log(context);
+//     const dictionary = await getDictionary("vi");
+//     return {
+//         props: {
+//             dictionary,
+//         },
+//     };
+// };
 
-export default function SignUp({ dictionary }: { dictionary: any }) {
+export default function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [agree, setAgree] = useState(false);
-
-    console.log(dictionary);
 
     const [open, setOpen] = useState(false);
     const [notiModal, setNotiModal] = useState<NotificationModal>({

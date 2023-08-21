@@ -7,15 +7,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 const UserService = container.get<IUserService>(SERVICES_TYPES.UserService);
 
-/**
- * @swagger
- * /api/user:
- *   get:
- *     description: Test user
- *     responses:
- *       200:
- *         description: Hello World!
- */
 export async function GET(request: NextRequest) {
   const user = await UserService.Login(await request.json());
 

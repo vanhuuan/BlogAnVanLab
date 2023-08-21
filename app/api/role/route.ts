@@ -4,15 +4,6 @@ import { IRepository } from "@/repositories/interfaces/IRepository";
 import { REPOSITORIES_TYPES } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 
-/**
- * @swagger
- * /api/role:
- *   get
- *     description: add role
- *     responses:
- *       200:
- *         description: oke
- */
 export async function GET(request: NextRequest) {
 
     const releRepository = container.get<IRepository<Role>>(REPOSITORIES_TYPES.RoleRepository);

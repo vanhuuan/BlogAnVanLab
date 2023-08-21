@@ -5,14 +5,6 @@ import { IUserService } from "@/services/IUserService";
 import { SERVICES_TYPES } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 
-/**
- * @swagger
- * /api/auth/logIn:
- *   post:
- *     description: Đăng nhập
- *     responses:
- *       200:
- */
 export async function POST(request: NextRequest) {
     try {
         const UserService = container.get<IUserService>(SERVICES_TYPES.UserService);

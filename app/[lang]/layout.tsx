@@ -32,7 +32,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header lang={locale} />
           {children }
-          <Footer/>
+          <Footer lang={locale} />
         </ThemeProvider>
       </body>
     </html>

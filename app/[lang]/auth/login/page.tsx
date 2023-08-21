@@ -1,5 +1,12 @@
+import { FormEvent } from "react"
 
 export default function Login() {
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    // Goi api
+  }
+
   return (
     <div className="w-full max-w-lg mx-auto p-6 flex h-full items-center py-16 bg">
       <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-2xl w-full dark:bg-gray-800 dark:border-gray-700">

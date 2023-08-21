@@ -51,6 +51,7 @@ export class UserService implements IUserService {
             }
 
             var userView: UserViewDto = {
+                id: user._id,
                 name: user!.name,
                 email: acc.email,
                 createdDate: user.createdAt,

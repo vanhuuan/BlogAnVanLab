@@ -7,11 +7,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 const UserService = container.get<IUserService>(SERVICES_TYPES.UserService);
 
-export async function GET(request: NextRequest) {
-  const url = new URL(request.url);
-
-  const uid = url.searchParams.get("uid");
-  if (!uid)
+// api/user/uid meothod get
+export async function GET(request: NextRequest, route: { params: { uid: string } }) {
+  if (!route.params.uid)
     return NextResponse.json(
       { status: "Not Oke" },
       {
@@ -19,7 +17,7 @@ export async function GET(request: NextRequest) {
       }
     );
 
-  const user = await UserService.GetUserInfo(uid);
+  const user = await UserService.GetUserInfo(route.params.uid);
 
   if (user != null) {
     return NextResponse.json(

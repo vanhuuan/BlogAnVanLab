@@ -1,5 +1,5 @@
-import { LoginDto, SignUpDto } from "@/viewmodels/dtos/client/AuthDto";
-import { UserViewDto } from "@/viewmodels/dtos/client/UserDto";
+import { LoginDto, SignUpDto } from "@/viewmodels/dtos/client/User/AuthDto";
+import { UpdateUserDto, UserViewDto } from "@/viewmodels/dtos/client/User/UserDto";
 import { IUserService } from "../IUserService";
 import { User } from "@/models/User";
 import { inject, injectable } from "inversify";
@@ -37,12 +37,12 @@ export class UserService implements IUserService {
 
             const hashedPassword = await bcrypt.hash(dto.passWord, acc.salt)
             if (hashedPassword !== acc.password) return null
-            
+
             const user = await this.userRepository.findById(acc.user.toString())
             if (user == null) return null
 
             var roles: string[] = []
-            for(const item of user.roles){
+            for (const item of user.roles) {
                 const id = item.toString();
                 const role = await this.roleRepository.findById(id)
                 if (role != null) {
@@ -95,5 +95,49 @@ export class UserService implements IUserService {
 
     ForgetPass(email: string): Promise<boolean> {
         throw new Error("Method not implemented.");
+    }
+
+    async GetUserInfo(uid: string): Promise<UserViewDto | null> {
+        try {
+            const acc = await this.accountRepository.findOne({ user: uid })
+            if (!acc) return null;
+
+            const user = await this.userRepository.findById(acc.user.toString())
+            if (user == null) return null
+
+            var roles: string[] = []
+            for (const item of user.roles) {
+                const id = item.toString();
+                const role = await this.roleRepository.findById(id)
+                if (role != null) {
+                    roles.push(role.name);
+                }
+            }
+
+            var userView: UserViewDto = {
+                id: user._id,
+                name: user!.name,
+                email: acc.email,
+                createdDate: user.createdAt,
+                roles: roles
+            }
+            return userView
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
+    }
+
+    async UpdateUserInfo(dto: UpdateUserDto): Promise<boolean> {
+        try {
+            const user = await this.userRepository.findById(dto.id);
+            if (user == null) return false;
+            user.name = dto.name;
+            await this.userRepository.update(dto.id, user);
+            return true;
+        } catch (error) {
+            console.error(error);
+            return false;
+        }
     }
 }

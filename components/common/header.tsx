@@ -4,6 +4,7 @@ import { getDictionary } from "@/get-dictionary";
 import LocateSwitcher from "../theme/locateSwitcher";
 import { getDynamicLink } from "@/hooks/getLink";
 import Script from "next/script";
+import { cookies } from 'next/headers'
 
 export default async function Header({ lang }: { lang: Locale }) {
   const language = await getDictionary(lang);
@@ -30,6 +31,9 @@ export default async function Header({ lang }: { lang: Locale }) {
       link: HeaderBar[index].link,
     };
   });
+
+  const cookieStore = cookies()
+  const uid = cookieStore.get('uid')
 
   return (
     <header className="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
@@ -123,22 +127,51 @@ export default async function Header({ lang }: { lang: Locale }) {
             {/* <a className="font-medium text-blue-600 md:py-6 dark:text-blue-500" href="#" aria-current="page">Landing</a> */}
             <ThemeSwitcher />
             <LocateSwitcher lang={lang} />
-            <a
-              className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-gay-800 md:border-l md:border-gray-300 md:my-6 md:pl-6 dark:border-gray-700 dark:text-gray-100 dark:hover:text-gray-500"
-              href="/auth/login"
-            >
-              <svg
-                className="w-4 h-4"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-              </svg>
-              {language.header.login}
-            </a>
+            {
+              uid ? <>
+                <img id="avatarButton" typeof="button"
+                  data-hs-collapse="#userDropdown"
+                  aria-controls="userDropdown"
+                  aria-label="userDropdown"
+                  className="w-10 h-10 rounded-full cursor-pointer" src="/docs/images/people/profile-picture-5.jpg" />
+                <div id="userDropdown" className="absolute top-12 z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                  <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                    <div>Văn Hữu An</div>
+                    <div className="font-medium truncate">vanhuuan01@gmail.com</div>
+                  </div>
+                  <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                    <li>
+                      <a href={`/${lang}/user`} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Thông tin cá nhân</a>
+                    </li>
+                    <li>
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bài viết của bạn</a>
+                    </li>
+                    <li>
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Đăng bài viết</a>
+                    </li>
+                  </ul>
+                  <div className="py-1">
+                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Đăng xuất</a>
+                  </div>
+                </div>
+              </> :
+                <a
+                  className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-gay-800 md:border-l md:border-gray-300 md:my-6 md:pl-6 dark:border-gray-700 dark:text-gray-100 dark:hover:text-gray-500"
+                  href="/auth/login"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                  </svg>
+                  {language.header.login}
+                </a>
+            }
           </div>
         </div>
       </nav>

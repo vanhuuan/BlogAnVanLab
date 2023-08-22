@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import { Locale, i18n } from "@/i18next.config";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +32,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-white dark:bg-gray-800`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header lang={locale} />
-          {children }
+          {children}
           <Footer lang={locale} />
         </ThemeProvider>
       </body>

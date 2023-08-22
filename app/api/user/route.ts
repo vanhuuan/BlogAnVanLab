@@ -8,7 +8,55 @@ import { NextRequest, NextResponse } from "next/server";
 const UserService = container.get<IUserService>(SERVICES_TYPES.UserService);
 
 export async function GET(request: NextRequest) {
-  const user = await UserService.Login(await request.json());
+  const url = new URL(request.url);
 
-  return NextResponse.json(user);
+  const uid = url.searchParams.get("uid");
+  if (!uid)
+    return NextResponse.json(
+      { status: "Not Oke" },
+      {
+        status: 400,
+      }
+    );
+
+  const user = await UserService.GetUserInfo(uid);
+
+  if (user != null) {
+    return NextResponse.json(
+      {
+        status: "Oke",
+        data: user,
+      },
+      {
+        status: 200,
+      }
+    );
+  } else {
+    return NextResponse.json(
+      { status: "Not Oke" },
+      {
+        status: 400,
+      }
+    );
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  const rs = await UserService.UpdateUserInfo(await request.json());
+
+  if (rs) {
+    return NextResponse.json(
+      { status: "Oke" },
+      {
+        status: 200,
+      }
+    );
+  } else {
+    return NextResponse.json(
+      { status: "Not Oke" },
+      {
+        status: 400,
+      }
+    );
+  }
 }

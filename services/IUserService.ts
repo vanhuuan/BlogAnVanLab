@@ -1,5 +1,5 @@
-import { LoginDto, SignUpDto } from "@/viewmodels/dtos/client/AuthDto";
-import { UserViewDto } from "@/viewmodels/dtos/client/UserDto";
+import { LoginDto, SignUpDto } from "@/viewmodels/dtos/client/User/AuthDto";
+import { UpdateUserDto, UserViewDto } from "@/viewmodels/dtos/client/User/UserDto";
 
 export interface IUserService {
     Login(dto: LoginDto): Promise<UserViewDto | null>;
@@ -7,5 +7,9 @@ export interface IUserService {
     SignUp(dto: SignUpDto): Promise<boolean>;
 
     ForgetPass(email: string): Promise<boolean>;
+
+    GetUserInfo(uid: string): Promise<UserViewDto | null>;
+
+    UpdateUserInfo(dto: UpdateUserDto): Promise<boolean>;
 }
 

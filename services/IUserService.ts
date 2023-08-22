@@ -8,3 +8,4 @@ export interface IUserService {
 
     ForgetPass(email: string): Promise<boolean>;
 }
+

@@ -147,7 +147,7 @@ export default async function Header({ lang }: { lang: Locale }) {
                       <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bài viết của bạn</a>
                     </li>
                     <li>
-                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Đăng bài viết</a>
+                      <a href={`/${lang}/topics/blogs/add`} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Đăng bài viết</a>
                     </li>
                   </ul>
                   <div className="py-1">

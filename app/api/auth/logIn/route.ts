@@ -10,19 +10,23 @@ export async function POST(request: NextRequest) {
         const UserService = container.get<IUserService>(SERVICES_TYPES.UserService);
 
         const user = await UserService.Login(await request.json());
-        
+
         if (user != null) {
             const token = await signJWT(
                 { sub: user!.id },
                 { exp: `${getEnvVariable("JWT_EXPIRES_IN_MINUTES")}` }
             )
 
-            return NextResponse.json({
+            const respone = NextResponse.json({
                 user: user,
                 token: token
             }, {
                 status: 200
             })
+            const sixtyDay = 60 * 24 * 60 * 60 * 1000
+            respone.cookies.set("uid", user.id, { httpOnly: true, expires: Date.now() - sixtyDay })
+            respone.cookies.set("token", token, { httpOnly: true, expires: Date.now() - sixtyDay })
+            return respone;
         }
 
         return NextResponse.json({ message: "Wrong Username or Password" }, {
